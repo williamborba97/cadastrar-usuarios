@@ -4,13 +4,9 @@ const UsersController =require('../controllers/usersController')
 
 const UsersRoutes = Router();
 
-function myMiddleware(request,response,next){
-    
-}
-
-
 const usersController = new UsersController; 
 
 UsersRoutes.post('/',usersController.create)
+UsersRoutes.put('/:id',usersController.update)
 
-    module.exports = UsersRoutes
+    module.exports = UsersRoutes 

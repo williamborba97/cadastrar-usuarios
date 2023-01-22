@@ -1,4 +1,4 @@
-const { default: knex } = require("knex");
+
 const kenx = require("../database/knex");
 
 class NotesController{
@@ -8,7 +8,7 @@ class NotesController{
 
         const note_id =  await knex("notes").insert({
             title,
-            descripton,
+            description,
             user_id
         });
 
@@ -19,10 +19,20 @@ class NotesController{
             }
         });
 
-    await knex ("links").insert(linksInsert);
-    
+        await kenx("links").insert(linksInsert);
+
+        const tagsInsert = tags.map(name =>{
+          return{
+            note_id,
+            name,
+            user_id
+          }
+        });
+
+    await knex ("tags").insert(tagsInsert);
 
 
+        response.json();
     }
 }
 

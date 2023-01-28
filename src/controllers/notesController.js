@@ -1,5 +1,5 @@
 
-const kenx = require("../database/knex");
+const knex = require("../database/knex");
 
 class NotesController{
     async create(request,response){
@@ -19,7 +19,7 @@ class NotesController{
             }
         });
 
-        await kenx("links").insert(linksInsert);
+        await knex("links").insert(linksInsert);
 
         const tagsInsert = tags.map(name =>{
           return{
@@ -29,7 +29,7 @@ class NotesController{
           }
         });
 
-    await knex ("tags").insert(tagsInsert);
+        await knex ("tags").insert(tagsInsert);
 
 
         response.json();
